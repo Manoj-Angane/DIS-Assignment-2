@@ -2,7 +2,7 @@
 
 namespace DIS_Assignment_2
 {
-    class Program: utility.util
+    class Program: DIS_Assignment_2.AssignmentFunction
     {
         static void Main(string[] args)
         {
@@ -15,9 +15,10 @@ namespace DIS_Assignment_2
             int[] c = { 1, 12, 5, 111, 200, 1000, 10 };
             Console.WriteLine("Max no. of toys :" + maximumToys(c, 50).ToString());
             //Question 7
-            int[] d = new int[] { 10, 80, 30, 90, 40, 50, 70 };
-            a = quickSort(d, 0, a.Length - 1);
-            displayArray(d);
+            int[] d = new int[] { 5, 4, 3, 2 };
+            //int[] d = new int[] { -20, -3916237, -357920, -3620601, 7374819, -7330761, 30, 6246457, -6461594, 266854, -520, -470 };
+            a = closestNumbers(d);
+            displayArray(a);
             Console.ReadKey(true);
         }//end of main
     }

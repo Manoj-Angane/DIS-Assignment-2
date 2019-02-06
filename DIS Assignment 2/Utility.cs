@@ -20,20 +20,18 @@ namespace utility
             }
             return temp;
         }//left rotate function
-        public static int maximumToys(int[] a, int d)
+        public static int maxArray(int[] a)
         {
-            Array.Sort(a);
-            int count = 0;
-            for (int i = 0; i < a.Length; i++)
+            int max = 0;
+            foreach (var item in a)
             {
-                if (a[i] <= d)
+                if (item > max)
                 {
-                    d = d - a[i];
-                    count++;
+                    max = item;
                 }
             }
-            return count;
-        }//end max toy function
+            return max;
+        }
         public static void displayArray(int[] d)
         {
             foreach (var item in d)
