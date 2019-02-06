@@ -6,4 +6,10 @@
     <RootNamespace>DIS_Assignment_2</RootNamespace>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Compile Update="Utility.cs">
+      <Generator>DIS_Assignment_2</Generator>
+    </Compile>
+  </ItemGroup>
+
 </Project>
