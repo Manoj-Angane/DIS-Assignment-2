@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Text;
 
@@ -48,5 +49,51 @@ namespace DIS_Assignment_2
             }
             return count;
         }//end max toy function
-    }
+        public static int findMedian(int[] t)
+        {
+            int temp = t.Length;
+            int median = (temp + 1) / 2;
+            return t[median-1];
+        }
+        
+        public static int[] gradingStudents(int [] g)
+        {
+            List<int> result = new List<int>();
+            int[] a = new int[g.Length];
+            
+            for (int i = 0; i< g.Length; i++)
+            {
+                if (g[i] <38)
+                {
+                    //marks_to_be_added_to_array = g[i];
+                    //Console.WriteLine(g[i]);
+                    result.Add(g[i]);
+                }
+                if (g[i] >= 38)
+                {
+                    int d = g[i] / 5;
+                    int n = (d + 1) * 5;
+                    if( (n -g[i]) <3)
+                    {
+                        //marks_to_be_added_to_array = n;
+                        //Console.WriteLine(n);
+                        result.Add(n);
+                    }
+                    else
+                    {
+                        //marks_to_be_added_to_array = g[i];
+                        //Console.WriteLine(g[i]);
+                        result.Add(g[i]);
+                    }
+                }
+            }
+
+             a=result.ToArray();
+            return a;
+            
+        }
+        
+        }
+    
 }
+
