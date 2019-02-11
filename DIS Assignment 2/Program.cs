@@ -1,23 +1,13 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Generic;
 
 namespace DIS_Assignment_2
 {
-    class Program: DIS_Assignment_2//.AssignmentFunction
+    class Program
     {
         static void Main(string[] args)
         {
-            
-            /*Question 7
-            int[] d = new int[] { 5, 4, 3, 2 };
-            //int[] d = new int[] { -20, -3916237, -357920, -3620601, 7374819, -7330761, 30, 6246457, -6461594, 266854, -520, -470 };
-            a = closestNumbers(d);
-            displayArray(a);*/
-           
-
-            
-            
-
              // left rotation
             Console.WriteLine("Left Rotation");
             int d = 4;
@@ -155,8 +145,8 @@ namespace DIS_Assignment_2
             int len_brr = brr.Length;
             
 
-            arr=quickSort(arr,0,len_arr-1);
-            brr = quickSort(brr,0,len_brr-1);
+            arr=selectSort(arr);
+            brr =selectSort(brr);
             int temp = brr[0];
             int arr_match = 0;
             int brr_match = 0;
@@ -242,8 +232,7 @@ namespace DIS_Assignment_2
         {
             var list = new List<int>();
             int difference = maxArray(arr);
-            a = selectSort(arr);
-            displayArray(arr);
+            arr = selectSort(arr);
             for (int i = 0; i < arr.Length - 1; i++)
             {
                 if (difference > (arr[i + 1] - arr[i]))
@@ -337,6 +326,82 @@ namespace DIS_Assignment_2
             return res;
         }
 
+        public static int [] selectSort(int[] arr)
+        {
+            int pos_min, temp;
+            for (int i = 0; i < arr.Length; i++)
+            {
+                pos_min = i;
+
+                for (int j = i + 1; j < arr.Length; j++)
+                {
+                    if (arr[j] < arr[pos_min])
+                    {
+                        pos_min = j;
+                    }
+                }
+                //Swapping below
+                if (pos_min != i)
+                {
+                    temp = arr[i];
+                    arr[i] = arr[pos_min];
+                    arr[pos_min] = temp;
+                }
+            }
+            return arr;
+
+        }
+
+        public static int maxArray(int[] a)
+        {
+            int max = 0;
+            foreach (var item in a)
+            {
+                if (item > max)
+                {
+                    max = item;
+                }
+            }
+            return max;
+        }
+
+        public static int leapYear(int year, string cal = "Gregorian")
+        //return 1 if year is leap for Gregorian and Julian Calendar; Gregorian is by defalaut.
+        {
+            switch (cal.ToLower().Trim())
+            {
+                case "julian":
+                    {
+                        if (year % 4 == 0)
+                        {
+                            return 1;
+                        }
+                        else
+                        {
+                            return 0;
+                        }
+                    }
+                case "gregorian":
+                    {
+                        if (year % 400 == 0)
+                        {
+                            return 1;
+                        }
+                        else if (year % 100 != 0 && year % 4 == 0)
+                        {
+                            return 1;
+                        }
+                        else
+                        {
+                            return 0;
+                        }
+                    }
+                default:
+                    {
+                        throw new System.ArgumentException("Invalid Calender Year", cal);
+                    }
+            }
+        }//end of leap year
 
     }//end of class
 
