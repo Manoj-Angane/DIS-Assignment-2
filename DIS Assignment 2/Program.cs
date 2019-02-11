@@ -188,16 +188,17 @@ namespace DIS_Assignment_2
         // Complete the gradingStudents function below.
         static int[] gradingStudents(int[] grades)
         {
-            List<int> result = new List<int>();
-            int[] r3 = new int[grades.Length];
-            
-            for (int i = 0; i< grades.Length; i++)
+            List<int> result = new List<int>();  // created a list and named it as result
+            int[] r3 = new int[grades.Length];  //  created a array r3 of length of input array. 
+
+            // for-loop assigning the numeric grade for different ranges of grade-marks
+            for (int i = 0; i< grades.Length; i++) 
             {
-                if (grades[i] <38)
+                if (grades[i] <38)    // assigning grade-marks for value less than 38
                 {
                     result.Add(grades[i]);
                 }
-                if (grades[i] >= 38)
+                if (grades[i] >= 38)  // // assigning grade-marks for grade more than 38 according to asked conditions
                 {
                     int d = grades[i] / 5;
                     int n = (d + 1) * 5;
@@ -220,10 +221,10 @@ namespace DIS_Assignment_2
         // Complete the findMedian function below.
         static int findMedian(int[] arr2)
         { 
-            selectSort(arr2);
-            int temp = arr2.Length;
-            int median = (temp + 1) / 2;
-            return arr2[median-1];
+            selectSort(arr2); // selectSort to sort the input array
+            int temp = arr2.Length;   // temp variable to store the length of input array
+            int median = (temp + 1) / 2;   // median variable to store index of median
+            return arr2[median-1];  // printing the value of median index
             
         }
 
@@ -328,11 +329,13 @@ namespace DIS_Assignment_2
 
         public static int [] selectSort(int[] arr)
         {
-            int pos_min, temp;
+            int pos_min, temp; // pos_min will store the index of the minimum value, temp variable is used for swapping.
+
+            // for-loop for every pass
             for (int i = 0; i < arr.Length; i++)
             {
                 pos_min = i;
-
+                // for-loop for assigning the index of minimum value to pos_min 
                 for (int j = i + 1; j < arr.Length; j++)
                 {
                     if (arr[j] < arr[pos_min])
@@ -340,7 +343,7 @@ namespace DIS_Assignment_2
                         pos_min = j;
                     }
                 }
-                //Swapping below
+                //Swapping 
                 if (pos_min != i)
                 {
                     temp = arr[i];
