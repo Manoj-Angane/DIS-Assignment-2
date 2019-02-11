@@ -3,27 +3,20 @@ using System.Collections;
 
 namespace DIS_Assignment_2
 {
-    class Program: DIS_Assignment_2.AssignmentFunction
+    class Program: DIS_Assignment_2//.AssignmentFunction
     {
         static void Main(string[] args)
         {
-           
-          /*  //Question 1
-            int[] a = { 1, 2, 3, 4, 5 };
-            int[] b = rotLeft(a, 4);
-            displayArray(b);
-            //Question 2
-            int[] c = { 1, 12, 5, 111, 200, 1000, 10 };
-            Console.WriteLine("Max no. of toys :" + maximumToys(c, 50).ToString());
-            //Question 7
+            
+            /*Question 7
             int[] d = new int[] { 5, 4, 3, 2 };
             //int[] d = new int[] { -20, -3916237, -357920, -3620601, 7374819, -7330761, 30, 6246457, -6461594, 266854, -520, -470 };
             a = closestNumbers(d);
-            displayArray(a);
+            displayArray(a);*/
            
 
             
-            }*/
+            
 
              // left rotation
             Console.WriteLine("Left Rotation");
@@ -85,13 +78,35 @@ namespace DIS_Assignment_2
         // Complete the rotLeft function below.
         static int[] rotLeft(int[] a, int d)
         {
-            return new int[] {};
+            int[] temp = new int[a.Length];
+            for (int j = 0; j < a.Length; j++)
+            {
+                if (j - d >= 0)
+                {
+                    temp[j - d] = a[j];
+                }
+                else
+                {
+                    temp[a.Length - d + j] = a[j];
+                }
+            }
+            return temp;            
         }
 
         // Complete the maximumToys function below.
         static int maximumToys(int[] prices, int k)
         {
-            return 0;
+            prices = selectSort(prices);
+            int count = 0;
+            for (int i = 0; i < prices.Length; i++)
+            {
+                if (prices[i] <= k)
+                {
+                    k = k - prices[i];
+                    count++;
+                }
+            }
+            return count;
         }
 
         // Complete the balancedSums function below.
@@ -225,13 +240,101 @@ namespace DIS_Assignment_2
         // Complete the closestNumbers function below.
         static int[] closestNumbers(int[] arr)
         {
-            return new int[] { };
+            var list = new List<int>();
+            int difference = maxArray(arr);
+            a = selectSort(arr);
+            displayArray(arr);
+            for (int i = 0; i < arr.Length - 1; i++)
+            {
+                if (difference > (arr[i + 1] - arr[i]))
+                {
+                    difference = arr[i + 1] - arr[i];
+                    list.Clear();
+                    list.Add(arr[i]);
+                    list.Add(arr[i + 1]);
+                }
+                else if (difference == (arr[i + 1] - arr[i]))
+                {
+                    list.Add(arr[i]);
+                    list.Add(arr[i + 1]);
+                }
+            }
+            int[] d = list.ToArray();
+            //Console.WriteLine(difference);
+            return d;
         }
 
         // Complete the dayOfProgrammer function below.
         static string dayOfProgrammer(int year)
         {
-            return "";
+            string res = "";
+            int day = 256;
+            int a = leapYear(year);
+            if (year > 1918)
+            {
+                switch (a)
+                {
+                    case 0:
+                        res = dayCal(year, "comm", day);
+                        break;
+                    case 1:
+                        res = dayCal(year, "leap", day);
+                        break;
+                    default:
+                        throw new System.ArgumentException("Invalid Calender Year", year.ToString());
+                }
+            }
+            else if (year < 1918)
+            {
+                switch (leapYear(year, "Julian"))
+                {
+                    case 1:
+                        res = dayCal(year, "leap", day);
+                        break;
+                    case 0:
+                        res = dayCal(year, "comm", day);
+                        break;
+                    default:
+                        throw new System.ArgumentException("Invalid Calender Year", year.ToString());
+                }
+            }
+            else
+            {
+                res = dayCal(year, "spcl", day);
+            }
+            return res;
+
+        }
+        public static string dayCal(int year, string typ, int day)
+        //provide year, type of year like leap,Normal=comm, spcl case of 1918 for russia and number of day to return date of number of date.
+        {
+            int[] mon = new int[12];
+            int[] leap = new int[] { 31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
+            int[] comm = new int[] { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
+            int[] spcl = new int[] { 31, 15, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
+            switch (typ)
+            {
+                case "leap":
+                    mon = leap;
+                    break;
+                case "comm":
+                    mon = comm;
+                    break;
+                case "spcl":
+                    mon = spcl;
+                    break;
+                default:
+                    throw new System.ArgumentException("invalid type of year", typ);
+            }
+            int i = 0;
+            string res = "dd.mm.yyyy";
+            while (day > mon[i])
+            {
+                day -= mon[i];
+                i++;
+            }
+            res = day.ToString() + "." + (i + 1).ToString() + "." + year.ToString();
+            return res;
         }
 
 
